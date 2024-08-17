@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { MainPage } from "./project/pages/MainPage";
 import { ProductsPage } from "./project/pages/ProductsPage";
 import { ProductDetailsPage } from './project/pages/ProductDetailsPage';
@@ -27,6 +27,4 @@ test('Buy a product and check that request was created', async ({ page }) => {
     phone: "971010110",
     email: "john.dee@gmail.com"
   });
-
-
 });
