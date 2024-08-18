@@ -1,25 +1,32 @@
 import { Page } from "playwright";
-// import { Filters } from "./Filters";
+import { MainPageLocators } from '../locators/MainPageLocators';
 
 export class MainPage {
     private page: Page;
+    private mainPageLocators: MainPageLocators;
 
     constructor(page: Page) {
         this.page = page;
-    };
+        this.mainPageLocators = new MainPageLocators(page);
+    }
 
     async navigateToMainPage() {
         await this.page.goto("https://telemart.ua/");
     }
+
     async confirmYourCity() {
-        await this.page.getByRole('button', { name: 'Так, вірно' }).click();
-    };
+        await this.mainPageLocators.confirmCityBtn.click();
+    }
 
     async selectLenguage() {
-        await this.page.getByRole('button', { name: 'Українська' }).click();
-    };
+        await this.mainPageLocators.selectLenguageBtn.click();
+    }
+
     async selectProduct(category: string, productItem: string) {
-        await this.page.getByRole('tab', { name: category }).hover();
-        await this.page.getByRole('link', { name: productItem }).first().click();
-    };
-};
+        const categoryTab = this.mainPageLocators.getCategoryTab(category);
+        const productLink = this.mainPageLocators.getProductItem(productItem);
+
+        await categoryTab.hover();
+        await productLink.click();
+    }
+}

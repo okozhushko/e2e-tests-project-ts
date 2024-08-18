@@ -1,10 +1,16 @@
 import { Page } from "playwright";
+import { ProductsPageLocators } from '../locators/ProductsPageLocators';
+
 
 export class ProductsPage {
     private page: Page;
+    private productsPageLocators: ProductsPageLocators;
+
 
     constructor(page: Page) {
         this.page = page;
+        this.productsPageLocators = new ProductsPageLocators(page);
+
     };
 
     async selectFilters(filterCategory: string, filter: string) {
@@ -23,10 +29,10 @@ export class ProductsPage {
     };
 
     async showResults() {
-        await this.page.getByRole('link', { name: 'Показати' }).click();
+        await this.productsPageLocators.showResultsBtn.click();
     };
     async selectItemByPosition(position: number) {
-        const allItems = await this.page.locator('//div[@class="product-item__col-pic"]//a').all();
+        const allItems = await this.productsPageLocators.productItemsList.all();
         allItems[position].click();
     };
 };

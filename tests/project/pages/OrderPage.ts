@@ -1,10 +1,15 @@
-import { Page } from 'playwright';
+import { Page, Locator } from 'playwright';
+import { OrderPageLocators } from '../locators/OrderPageLocators';
+
 
 export class OrederPage {
     private page: Page;
+    private orderPageLocators: OrderPageLocators;
+
 
     constructor(page: Page) {
         this.page = page;
+        this.orderPageLocators = new OrderPageLocators(page);
     };
     async setContactInfo(contactData: {
         firstName: string;
@@ -13,10 +18,10 @@ export class OrederPage {
         phone: string;
         email: string;
     }) {
-        await this.page.locator("//input[@name='last_name']").fill(contactData.firstName);
-        await this.page.locator("//input[@name='first_name']").fill(contactData.lastName);
-        await this.page.locator("//input[@name='middle_name']").fill(contactData.middleName);
-        await this.page.locator("//input[@name='phone']").fill(contactData.phone);
-        await this.page.locator("//input[@name='email']").fill(contactData.email);
+        await this.orderPageLocators.firstNameFld.fill(contactData.firstName); //FIX or command+z
+        await this.orderPageLocators.lastNameFld.fill(contactData.lastName);
+        await this.orderPageLocators.middleNameFld.fill(contactData.middleName);
+        await this.orderPageLocators.phoneNumberFld.fill(contactData.phone);
+        await this.orderPageLocators.emailAddressFld.fill(contactData.email);
     }
 };
