@@ -1,18 +1,21 @@
 import { Page } from 'playwright';
+import { ProductDetailsPageLocators } from '../locators/ProductDetailsPageLocators';
 
 export class ProductDetailsPage {
     private page: Page;
+    private productDetailsPageLocators: ProductDetailsPageLocators;
 
     constructor(page: Page) {
         this.page = page;
+        this.productDetailsPageLocators = new ProductDetailsPageLocators(page);
     };
 
     async buyProduct() {
-        await this.page.locator("//div[@class='bag-total']//a").click();
+        await this.productDetailsPageLocators.buyProductBtn.click();
     };
 
     async placeOrder() {
-        await this.page.locator("//div[@class='card-block__price--sticky']//a").click();
+        await this.productDetailsPageLocators.itemPlaceOrder.click();
     };
 
 };
