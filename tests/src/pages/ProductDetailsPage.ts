@@ -11,7 +11,7 @@ export class ProductDetailsPage {
     };
 
     async buyProduct() {
-        await this.productDetailsPageLocators.buyProductBtn.click();
+        await this.productDetailsPageLocators.orderProductBtn.click();
     };
 
     async placeOrder() {

@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { MainPage } from "./project/pages/MainPage";
-import { ProductsPage } from "./project/pages/ProductsPage";
-import { ProductDetailsPage } from './project/pages/ProductDetailsPage';
-import { OrederPage } from './project/pages/OrderPage';
+import { MainPage } from "./src/pages/MainPage";
+import { ProductsPage } from "./src/pages/ProductsPage";
+import { ProductDetailsPage } from './src/pages/ProductDetailsPage';
+import { OrederPage } from './src/pages/OrderPage';
 import { faker } from '@faker-js/faker';
 
 test('Buy a product and check that request was created', async ({ page }) => {
