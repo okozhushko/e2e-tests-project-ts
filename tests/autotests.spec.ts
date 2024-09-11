@@ -1,34 +1,24 @@
-import { test } from '@playwright/test';
-import { MainPage } from "./src/pages/MainPage";
-import { ProductsPage } from "./src/pages/ProductsPage";
-import { ProductDetailsPage } from './src/pages/ProductDetailsPage';
-import { OrederPage } from './src/pages/OrderPage';
+import { test } from './project/fixtures/pagesFixture';
 import { faker } from '@faker-js/faker';
 
-test('Buy a product and check that request was created', async ({ page }) => {
-
-  const mainPage = new MainPage(page);
-  const productsPage = new ProductsPage(page);
-  const productDetailsPage = new ProductDetailsPage(page);
-  const orederPage = new OrederPage(page);
-
+test('Buy a product and check that request was created', async ({ mainPage, productsPage, productDetailsPage, orederPage }) => {
   const randomFirtsName = faker.person.firstName;
   const randomLastName = faker.person.lastName;
   const randomMiddleName = faker.person.middleName;
   const randomEmail = faker.internet.email;
   const randomPhone = faker.phone.number;
 
-  await mainPage.navigateToMainPage();
-  await mainPage.selectLenguage();
-  await mainPage.confirmYourCity();
-  await mainPage.selectProduct("Монітори та ТВ", "Samsung");
-  await productsPage.selectFilters("Наявність у магазинах", "Акція");
-  await productsPage.selectFilters("Роздільна здатність", "Full HD (1920x1080)");
-  await productsPage.showResults();
-  await productsPage.selectItemByPosition(0);
-  await productDetailsPage.placeOrder();
-  await productDetailsPage.buyProduct();
-  await orederPage.setContactInfo({
+  mainPage.navigateToMainPage();
+  mainPage.selectLenguage();
+  mainPage.confirmYourCity();
+  mainPage.selectProduct("Монітори та ТВ", "Samsung");
+  productsPage.selectFilters("Наявність у магазинах", "Акція");
+  productsPage.selectFilters("Роздільна здатність", "Full HD (1920x1080)");
+  productsPage.showResults();
+  productsPage.selectItemByPosition(0);
+  productDetailsPage.placeOrder();
+  productDetailsPage.buyProduct();
+  orederPage.setContactInfo({
     firstName: randomFirtsName(),
     lastName: randomLastName(),
     middleName: randomMiddleName(),
