@@ -2,7 +2,7 @@ import { Page, Locator } from 'playwright';
 import { OrderPageLocators } from '../locators/OrderPageLocators';
 
 
-export class OrderPage {
+export class OrederPage {
     private page: Page;
     private orderPageLocators: OrderPageLocators;
 

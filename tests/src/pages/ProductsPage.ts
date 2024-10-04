@@ -2,12 +2,6 @@ import { Page } from "playwright";
 import { ProductsPageLocators } from '../locators/ProductsPageLocators';
 
 export class ProductsPage {
-    placeOrder() {
-      throw new Error('Method not implemented.');
-    }
-    buyProduct() {
-      throw new Error('Method not implemented.');
-    }
     private page: Page;
     private productsPageLocators: ProductsPageLocators;
 
