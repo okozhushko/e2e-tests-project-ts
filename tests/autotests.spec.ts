@@ -1,16 +1,7 @@
-import { test } from '@playwright/test';
-import { MainPage } from "./src/pages/MainPage";
-import { ProductsPage } from "./src/pages/ProductsPage";
-import { ProductDetailsPage } from './src/pages/ProductDetailsPage';
-import { OrederPage } from './src/pages/OrderPage';
+import { test, expect } from '../tests/src/pages/fixtures';
 import { faker } from '@faker-js/faker';
 
-test('Buy a product and check that request was created', async ({ page }) => {
-
-  const mainPage = new MainPage(page);
-  const productsPage = new ProductsPage(page);
-  const productDetailsPage = new ProductDetailsPage(page);
-  const orederPage = new OrederPage(page);
+test('Buy a product and check that request was created', async ({ mainPage, productsPage, productDetailsPage, orderPage, contactInfo }) => {
 
   const randomFirtsName = faker.person.firstName;
   const randomLastName = faker.person.lastName;
@@ -21,14 +12,14 @@ test('Buy a product and check that request was created', async ({ page }) => {
   await mainPage.navigateToMainPage();
   await mainPage.selectLenguage();
   await mainPage.confirmYourCity();
-  await mainPage.selectProduct("Монітори та ТВ", "Samsung");
+  await mainPage.selectProduct("Монітори по брендам", "Samsung");
   await productsPage.selectFilters("Наявність у магазинах", "Акція");
   await productsPage.selectFilters("Роздільна здатність", "Full HD (1920x1080)");
   await productsPage.showResults();
   await productsPage.selectItemByPosition(0);
   await productDetailsPage.placeOrder();
   await productDetailsPage.buyProduct();
-  await orederPage.setContactInfo({
+  await orderPage.setContactInfo({
     firstName: randomFirtsName(),
     lastName: randomLastName(),
     middleName: randomMiddleName(),
