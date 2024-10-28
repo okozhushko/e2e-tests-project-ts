@@ -12,7 +12,7 @@ test('Buy a product and check that request was created', async ({ mainPage, prod
   await mainPage.navigateToMainPage();
   await mainPage.selectLenguage();
   await mainPage.confirmYourCity();
-  await mainPage.selectProduct("Монітори по брендам", "Samsung");
+  await mainPage.selectProduct("Монітори", "Samsung");
   await productsPage.selectFilters("Наявність у магазинах", "Акція");
   await productsPage.selectFilters("Роздільна здатність", "Full HD (1920x1080)");
   await productsPage.showResults();
